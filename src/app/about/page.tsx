@@ -1,56 +1,55 @@
 'use client';
+'use client';
+
 import React from 'react';
 
 const AboutPage = () => {
   return (
-    <div className="bg-gray-50 min-h-screen py-16 px-6 md:px-12 lg:px-24">
-      <div className="max-w-5xl mx-auto">
-        {/* Heading */}
-        <h1 className="text-5xl font-extrabold text-gray-900 mb-8 text-center">
-          About <span className="text-indigo-600">NextGen CodeX</span>
+    <div className="bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-gray-300 min-h-screen py-20 px-6">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-6 text-center">
+        <span className="text-purple-400">About Us</span>
         </h1>
 
-        {/* Intro Paragraph */}
-        <p className="text-lg text-gray-700 mb-6 leading-relaxed text-center">
-          At <strong className="text-indigo-600">NextGen CodeX PVT LTD</strong>, we don’t just build software — we create immersive digital experiences that inspire growth, drive innovation, and ensure long-term success.
+        <p className="mb-5 text-lg leading-relaxed">
+          At <strong className="text-white">NextGen CodeX PVT LTD</strong>, we’re not just building software — we’re crafting{" "}
+          <span className="text-white font-medium">digital experiences</span> that ignite growth, spark innovation, and ensure
+          lasting impact. Based in Sri Lanka, we specialize in <strong className="text-white">modern website development</strong>,{" "}
+          <strong className="text-white">mobile applications</strong>, and <strong className="text-white">business automation solutions</strong> tailored to
+          uplift your brand and streamline your processes.
         </p>
 
-        <p className="text-lg text-gray-700 mb-10 leading-relaxed text-center">
-          From <strong className="text-indigo-600">modern websites</strong> and <strong className="text-indigo-600">mobile applications</strong> to complete <strong className="text-indigo-600">business automation solutions</strong>, we specialize in helping businesses elevate their presence and streamline operations.
+        <p className="mb-5 text-lg leading-relaxed">
+          Our passionate team of developers, designers, and digital strategists are committed to delivering powerful, user-focused,
+          and scalable digital products that fit your unique goals. Whether you’re a rising startup or an established enterprise, we’re
+          ready to turn your vision into a stunning reality.
         </p>
 
-        {/* What We Do Section */}
-        <div className="bg-white rounded-2xl shadow-md p-8 mb-10">
-          <h2 className="text-3xl font-semibold text-gray-900 mb-6 border-b pb-2 border-indigo-200">
-            What We Do
-          </h2>
-          <ul className="list-disc pl-6 space-y-3 text-lg text-gray-700">
-            <li>Custom Web Development</li>
-            <li>Mobile App Development</li>
-            <li>E-Commerce Solutions</li>
-            <li>POS & Business Management Systems</li>
-            <li>UI/UX Design & Branding</li>
-            <li>Social Media & Digital Marketing Services</li>
-          </ul>
-        </div>
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          <span className="text-[#8A2BE2]"></span> What We Do
+        </h2>
+        <ul className="list-disc pl-6 text-lg space-y-2">
+          <li>Custom Web Development</li>
+          <li>Mobile App Development</li>
+          <li>E-Commerce Solutions</li>
+          <li>POS & Business Management Systems</li>
+          <li>UI/UX Design & Branding</li>
+          <li>Social Media & Digital Marketing Services</li>
+        </ul>
 
-        {/* Why Choose Us Section */}
-        <div className="bg-indigo-50 rounded-2xl shadow-md p-8 mb-10">
-          <h2 className="text-3xl font-semibold text-indigo-800 mb-6 border-b pb-2 border-indigo-300">
-            Why Choose Us?
-          </h2>
-          <ul className="list-disc pl-6 space-y-3 text-lg text-indigo-900">
-            <li>Innovative, future-ready tech solutions</li>
-            <li>Dedicated client support and transparent communication</li>
-            <li>Affordable pricing tailored for startups and growing businesses</li>
-            <li>A creative and detail-focused development team</li>
-          </ul>
-        </div>
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          <span className="text-[#8A2BE2]"></span> Why Choose Us?
+        </h2>
+        <ul className="list-disc pl-6 text-lg space-y-2">
+          <li>Innovative, future-ready tech solutions</li>
+          <li>Dedicated client support and transparent communication</li>
+          <li>Affordable pricing tailored for startups and growing businesses</li>
+          <li>A creative and detail-focused development team</li>
+        </ul>
 
-        {/* Closing Statement */}
-        <p className="text-xl text-center text-gray-800 font-medium">
-          At <strong className="text-indigo-600">NextGen CodeX</strong>, your success is our mission.<br />
-          <span className="text-indigo-800 font-semibold">Let’s build the future — together.</span>
+        <p className="mt-8 text-lg leading-relaxed">
+          At <strong className="text-white">NextGen CodeX</strong>, your success is our mission. Let’s build the{" "}
+          <span className="text-[#8A2BE2] font-medium">future</span> — together.
         </p>
       </div>
     </div>

@@ -8,18 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navigation = [
   { name: "Home", href: "/" },
-  {
-    name: "Services",
-    href: "/services",
-    submenu: [
-      { name: "Custom Software", href: "/services/custom-software" },
-      { name: "Web Development", href: "/services/web-development" },
-      { name: "Mobile Apps", href: "/services/mobile-apps" },
-      { name: "Cloud Solutions", href: "/services/cloud-solutions" },
-      { name: "UI/UX Design", href: "/services/design" },
-    ],
-  },
-
+  { name: "Services", href: "/services" },
   { name: "About", href: "/about" },
   { name: "Projects", href: "/projects" },
   { name: "Contact", href: "/contact" },
@@ -28,7 +17,6 @@ const navigation = [
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -39,7 +27,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
@@ -87,91 +74,30 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className="hidden ml-10 space-x-6 lg:flex">
             {navigation.map((item) => (
-              <div key={item.name} className="relative">
-                <motion.div whileHover={{ scale: 1.05 }} className="py-2">
-                  <Link
-                    href={item.href}
-                    className={`relative text-base font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${
-                      pathname === item.href ||
-                      (item.submenu &&
-                        pathname &&
-                        item.submenu.some((sub) =>
-                          pathname.startsWith(sub.href)
-                        ))
-                        ? "text-purple-400 bg-gray-800"
-                        : "text-gray-300 hover:text-purple-400 hover:bg-gray-800/50"
-                    }`}
-                    onMouseEnter={() =>
-                      item.submenu && setActiveSubmenu(item.name)
-                    }
-                    onMouseLeave={() => setActiveSubmenu(null)}
-                  >
-                    {item.name}
-                    {(pathname === item.href ||
-                      (item.submenu &&
-                        pathname &&
-                        item.submenu.some((sub) =>
-                          pathname.startsWith(sub.href)
-                        ))) && (
-                      <motion.span
-                        layoutId="activeNavItem"
-                        className="absolute left-0 bottom-0 w-full h-0.5 bg-purple-400"
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-                  </Link>
-                </motion.div>
-
-                {/* Submenu */}
-                {item.submenu && (
-                  <AnimatePresence>
-                    {activeSubmenu === item.name && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute left-0 mt-1 w-56 rounded-lg shadow-lg bg-gray-800 ring-1 ring-gray-700"
-                        onMouseEnter={() => setActiveSubmenu(item.name)}
-                        onMouseLeave={() => setActiveSubmenu(null)}
-                      >
-                        <div className="py-1">
-                          {item.submenu.map((subItem) => (
-                            <Link
-                              key={subItem.name}
-                              href={subItem.href}
-                              className={`block px-4 py-2 text-sm transition-colors duration-150 ${
-                                pathname?.startsWith(subItem.href)
-                                  ? "bg-gray-700 text-purple-400 font-medium"
-                                  : "text-gray-300 hover:bg-gray-700 hover:text-purple-400"
-                              }`}
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                )}
-              </div>
+              <motion.div key={item.name} whileHover={{ scale: 1.05 }} className="py-2">
+                <Link
+                  href={item.href}
+                  className={`relative text-base font-medium transition-colors duration-200 px-3 py-2 rounded-lg ${
+                    pathname === item.href
+                      ? "text-purple-400 bg-gray-800"
+                      : "text-gray-300 hover:text-purple-400 hover:bg-gray-800/50"
+                  }`}
+                >
+                  {item.name}
+                  {pathname === item.href && (
+                    <motion.span
+                      layoutId="activeNavItem"
+                      className="absolute left-0 bottom-0 w-full h-0.5 bg-purple-400"
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                </Link>
+              </motion.div>
             ))}
-          </div>
-
-          {/* Desktop CTA Buttons */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            ></motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            ></motion.div>
           </div>
 
           {/* Mobile menu button */}
@@ -229,38 +155,17 @@ export default function Header() {
           >
             <div className="px-2 pt-2 pb-4 space-y-1">
               {navigation.map((item) => (
-                <div
+                <Link
                   key={item.name}
-                  className="border-b border-gray-800 last:border-0"
+                  href={item.href}
+                  className={`block px-3 py-3 rounded-md text-base font-medium ${
+                    pathname === item.href
+                      ? "text-purple-400 bg-gray-800"
+                      : "text-gray-300 hover:text-purple-400 hover:bg-gray-800"
+                  }`}
                 >
-                  <Link
-                    href={item.href}
-                    className={`block px-3 py-3 rounded-md text-base font-medium ${
-                      pathname === item.href
-                        ? "text-purple-400 bg-gray-800"
-                        : "text-gray-300 hover:text-purple-400 hover:bg-gray-800"
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                  {item.submenu && (
-                    <div className="pl-4 pb-2 space-y-1">
-                      {item.submenu.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          href={subItem.href}
-                          className={`block px-3 py-2 rounded-md text-sm ${
-                            pathname?.startsWith(subItem.href)
-                              ? "text-purple-400 font-medium bg-gray-800"
-                              : "text-gray-400 hover:text-purple-400 hover:bg-gray-800"
-                          }`}
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                  {item.name}
+                </Link>
               ))}
               <div className="pt-4">
                 <div className="grid grid-cols-2 gap-3 px-2">

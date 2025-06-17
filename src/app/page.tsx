@@ -284,8 +284,8 @@ export default function HomePage() {
         </motion.div>
       </div>
 
-      {/* Hero Section with Animated Background */}
-      <div className="relative bg-gradient-to-br from-deep-space to-cosmic-purple overflow-hidden">
+      {/* Hero Section with Animated Background - Centered Content */}
+      <div className="relative bg-gradient-to-br from-deep-space to-cosmic-purple overflow-hidden min-h-[80vh] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-deep-space/20 to-galaxy-indigo/80"></div>
           <motion.div
@@ -301,79 +301,74 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div className="sm:text-center lg:text-left">
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-4xl tracking-tight font-extrabold text-stellar-white sm:text-5xl md:text-6xl"
+        <div className="max-w-7xl mx-auto relative z-10 w-full px-4 sm:px-6 lg:px-8">
+          <main className="text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-4xl tracking-tight font-extrabold text-stellar-white sm:text-5xl md:text-6xl"
+            >
+              <span className="block">Transforming Ideas into</span>
+              <motion.span
+                className="block text-stellar-accent"
+                animate={{
+                  textShadow: [
+                    "0 0 8px rgba(167, 139, 250, 0.5)",
+                    "0 0 16px rgba(167, 139, 250, 0.8)",
+                    "0 0 8px rgba(167, 139, 250, 0.5)",
+                  ],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+              >
+                Digital Reality
+              </motion.span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-3 text-base text-nebula-blue-200 sm:mt-5 sm:text-lg sm:max-w-xl mx-auto md:mt-5 md:text-xl"
+            >
+              We are a team of passionate developers and designers dedicated
+              to creating innovative software solutions that drive business
+              growth and technological advancement.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-8 flex justify-center space-x-4"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="rounded-md shadow"
+              >
+                <Link
+                  href="/contact"
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-deep-space bg-stellar-accent hover:bg-stellar-accent/90 md:py-4 md:text-lg md:px-10"
                 >
-                  <span className="block">Transforming Ideas into</span>
-                  <motion.span
-                    className="block text-stellar-accent"
-                    animate={{
-                      textShadow: [
-                        "0 0 8px rgba(167, 139, 250, 0.5)",
-                        "0 0 16px rgba(167, 139, 250, 0.8)",
-                        "0 0 8px rgba(167, 139, 250, 0.5)",
-                      ],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                    }}
-                  >
-                    Digital Reality
-                  </motion.span>
-                </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="mt-3 text-base text-nebula-blue-200 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+                  Get Started
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href="/services"
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-stellar-accent bg-deep-space hover:bg-galaxy-indigo border-stellar-accent md:py-4 md:text-lg md:px-10"
                 >
-                  We are a team of passionate developers and designers dedicated
-                  to creating innovative software solutions that drive business
-                  growth and technological advancement.
-                </motion.p>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start space-x-4"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="rounded-md shadow"
-                  >
-                    <Link
-                      href="/contact"
-                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-deep-space bg-stellar-accent hover:bg-stellar-accent/90 md:py-4 md:text-lg md:px-10"
-                    >
-                      Get Started
-                    </Link>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-3 sm:mt-0"
-                  >
-                    <Link
-                      href="/services"
-                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-stellar-accent bg-deep-space hover:bg-galaxy-indigo border-stellar-accent md:py-4 md:text-lg md:px-10"
-                    >
-                      Our Services
-                    </Link>
-                  </motion.div>
-                </motion.div>
-              </div>
-            </main>
-          </div>
+                  Our Services
+                </Link>
+              </motion.div>
+            </motion.div>
+          </main>
         </div>
 
         {/* Animated floating elements */}

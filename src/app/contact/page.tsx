@@ -16,14 +16,12 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       console.log('Form submitted:', formData);
       setFormData({ name: '', email: '', company: '', message: '' });
-      
-      // Show success animation
+
       document.getElementById('success-message')?.classList.remove('hidden');
       setTimeout(() => {
         document.getElementById('success-message')?.classList.add('hidden');
@@ -41,14 +39,14 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-deep-space to-cosmic-purple min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-gradient-to-br from-black via-indigo-900 to-purple-900 min-h-screen py-20 px-4">
+      <div className="max-w-7xl mx-auto">
         {/* Success Message */}
         <motion.div
           id="success-message"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="hidden fixed top-4 right-4 z-50 bg-stellar-accent text-stellar-white px-6 py-3 rounded-lg shadow-lg border border-galaxy-indigo/30"
+          className="hidden fixed top-4 right-4 z-50 bg-purple-700 text-white px-6 py-3 rounded-lg shadow-lg border border-purple-400"
         >
           <div className="flex items-center space-x-2">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -58,22 +56,23 @@ export default function ContactPage() {
           </div>
         </motion.div>
 
+        {/* Header */}
         <div className="text-center mb-16">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl font-extrabold text-stellar-white sm:text-5xl sm:tracking-tight lg:text-6xl"
+            className="text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl"
           >
-            Let&apos;s <span className="text-stellar-accent">Connect</span>
+            Let&apos;s <span className="text-purple-400">Connect</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-5 max-w-2xl mx-auto text-xl text-nebula-blue-200"
+            className="mt-4 max-w-2xl mx-auto text-lg text-purple-200"
           >
-            Have a project in mind or want to discuss potential collaboration? 
+            Have a project in mind or want to discuss a collaboration?
             We&apos;d love to hear from you.
           </motion.p>
         </div>
@@ -84,178 +83,140 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-galaxy-indigo/50 rounded-2xl shadow-xl overflow-hidden border border-galaxy-indigo/30"
+            className="bg-black/30 rounded-2xl shadow-xl border border-purple-700 p-8 backdrop-blur-lg"
           >
-            <div className="p-8 sm:p-10">
-              <h2 className="text-2xl font-bold text-stellar-white mb-6">Send us a message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-nebula-blue-200 mb-1">
-                    Your Name
+            <h2 className="text-2xl font-bold text-white mb-6">Send us a message</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {(['name', 'email', 'company', 'message'] as Array<keyof typeof formData>).map((field) => (
+                <div key={field}>
+                  <label htmlFor={field} className="block text-sm font-medium text-purple-200 mb-1">
+                    {field === 'name'
+                      ? 'Your Name'
+                      : field === 'email'
+                      ? 'Email Address'
+                      : field === 'company'
+                      ? 'Company (Optional)'
+                      : 'Your Message'}
                   </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="block w-full px-4 py-3 rounded-lg bg-deep-space/50 border border-galaxy-indigo/30 text-stellar-white focus:ring-2 focus:ring-stellar-accent focus:border-stellar-accent transition-all placeholder-nebula-blue-200/50"
-                    placeholder="John Doe"
-                  />
+                  {field === 'message' ? (
+                    <textarea
+                      name={field}
+                      id={field}
+                      rows={5}
+                      required={(field as string) !== 'company'}
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg bg-black/40 border border-purple-600 text-white focus:ring-2 focus:ring-purple-400 transition placeholder-purple-300/60"
+                      placeholder="Tell us about your project..."
+                    />
+                  ) : (
+                    <input
+                      type={field === 'email' ? 'email' : 'text'}
+                      name={field}
+                      id={field}
+                      required={field !== 'company'}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg bg-black/40 border border-purple-600 text-white focus:ring-2 focus:ring-purple-400 transition placeholder-purple-300/60"
+                      placeholder={
+                        field === 'name'
+                          ? 'John Doe'
+                          : field === 'email'
+                          ? 'john@example.com'
+                          : 'Acme Inc.'
+                      }
+                    />
+                  )}
                 </div>
+              ))}
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-nebula-blue-200 mb-1">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="block w-full px-4 py-3 rounded-lg bg-deep-space/50 border border-galaxy-indigo/30 text-stellar-white focus:ring-2 focus:ring-stellar-accent focus:border-stellar-accent transition-all placeholder-nebula-blue-200/50"
-                    placeholder="john@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-nebula-blue-200 mb-1">
-                    Company (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    name="company"
-                    id="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="block w-full px-4 py-3 rounded-lg bg-deep-space/50 border border-galaxy-indigo/30 text-stellar-white focus:ring-2 focus:ring-stellar-accent focus:border-stellar-accent transition-all placeholder-nebula-blue-200/50"
-                    placeholder="Acme Inc."
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-nebula-blue-200 mb-1">
-                    Your Message
-                  </label>
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows={5}
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="block w-full px-4 py-3 rounded-lg bg-deep-space/50 border border-galaxy-indigo/30 text-stellar-white focus:ring-2 focus:ring-stellar-accent focus:border-stellar-accent transition-all placeholder-nebula-blue-200/50"
-                    placeholder="Tell us about your project..."
-                  />
-                </div>
-
-                <div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full flex justify-center items-center py-3 px-6 border border-transparent rounded-lg shadow-sm text-lg font-medium text-deep-space bg-stellar-accent hover:bg-stellar-accent/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-stellar-accent transition-colors ${isSubmitting ? 'opacity-80 cursor-not-allowed' : ''}`}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-deep-space" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Sending...
-                      </>
-                    ) : (
-                      'Send Message'
-                    )}
-                  </button>
-                </div>
-              </form>
-            </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full flex justify-center items-center py-3 px-6 rounded-lg text-lg font-semibold text-black bg-purple-400 hover:bg-purple-300 transition ${
+                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  'Send Message'
+                )}
+              </button>
+            </form>
           </motion.div>
 
-          {/* Contact Information */}
+          {/* Contact Info & FAQs */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-8"
+            className="space-y-10 text-purple-100"
           >
-            <div className="bg-gradient-to-br from-cosmic-purple/50 to-galaxy-indigo/70 rounded-2xl shadow-xl p-8 sm:p-10 text-stellar-white border border-galaxy-indigo/30">
-              <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
-              <p className="mb-8 text-nebula-blue-200">
-                Feel free to reach out to us through any of these channels. Our team typically responds within 24 hours.
-              </p>
-
+            <div className="bg-black/30 rounded-2xl shadow-xl p-8 border border-purple-700 backdrop-blur-md">
+              <h2 className="text-2xl font-bold mb-6 text-white">Contact Information</h2>
+              <p className="mb-8 text-purple-300">Reach out to us using the info below.</p>
               <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-stellar-accent/20 p-3 rounded-lg">
-                    <svg className="h-6 w-6 text-stellar-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-medium">Email</h3>
-                    <p className="mt-1 text-nebula-blue-200">contact@nextgen-solutions.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-stellar-accent/20 p-3 rounded-lg">
-                    <svg className="h-6 w-6 text-stellar-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-medium">Phone</h3>
-                    <p className="mt-1 text-nebula-blue-200">+1 (555) 123-4567</p>
-                    <p className="mt-1 text-sm text-nebula-blue-200/80">Mon-Fri, 9am-5pm EST</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-stellar-accent/20 p-3 rounded-lg">
-                    <svg className="h-6 w-6 text-stellar-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-medium">Office</h3>
-                    <p className="mt-1 text-nebula-blue-200">123 Tech Street</p>
-                    <p className="mt-1 text-nebula-blue-200">San Francisco, CA 94107</p>
-                  </div>
-                </div>
+                <InfoBlock
+                  title="Email"
+                  content="contact@nextgen-solutions.com"
+                  icon="M3 8l7.89 5.26a2 2 0 002.22 0L21 8"
+                />
+                <InfoBlock
+                  title="Phone"
+                  content="+1 (555) 123-4567"
+                  sub="Mon-Fri, 9am-5pm EST"
+                  icon="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+                <InfoBlock
+                  title="Office"
+                  content="123 Tech Street, San Francisco, CA 94107"
+                  icon="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
               </div>
             </div>
 
-            <div className="bg-galaxy-indigo/50 rounded-2xl shadow-xl p-8 sm:p-10 border border-galaxy-indigo/30">
-              <h2 className="text-2xl font-bold text-stellar-white mb-6">Frequently Asked Questions</h2>
-              <div className="space-y-4">
-                <div className="border-b border-galaxy-indigo/30 pb-4">
-                  <h3 className="text-lg font-medium text-stellar-accent">What&apos;s your typical response time?</h3>
-                  <p className="mt-1 text-nebula-blue-200">
-                    We aim to respond to all inquiries within 24 hours during business days.
-                  </p>
-                </div>
-                <div className="border-b border-galaxy-indigo/30 pb-4">
-                  <h3 className="text-lg font-medium text-stellar-accent">Do you offer free consultations?</h3>
-                  <p className="mt-1 text-nebula-blue-200">
-                    Yes, we provide a free 30-minute consultation to discuss your project requirements.
-                  </p>
-                </div>
-                <div className="border-b border-galaxy-indigo/30 pb-4">
-                  <h3 className="text-lg font-medium text-stellar-accent">What industries do you specialize in?</h3>
-                  <p className="mt-1 text-nebula-blue-200">
-                    We have expertise across multiple industries including FinTech, Healthcare, E-commerce, and SaaS.
-                  </p>
-                </div>
-              </div>
+            <div className="bg-black/30 rounded-2xl shadow-xl p-8 border border-purple-700 backdrop-blur-md">
+              <h2 className="text-2xl font-bold mb-6 text-white">Frequently Asked Questions</h2>
+              <FAQItem question="What’s your typical response time?" answer="Within 24 hours during business days." />
+              <FAQItem question="Do you offer free consultations?" answer="Yes, we offer a 30-minute free consultation." />
+              <FAQItem question="What industries do you specialize in?" answer="FinTech, Healthcare, E-commerce, and SaaS." />
             </div>
           </motion.div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function InfoBlock({ title, content, sub, icon }: { title: string; content: string; sub?: string; icon: string }) {
+  return (
+    <div className="flex items-start space-x-4">
+      <div className="bg-purple-700/20 p-3 rounded-lg">
+        <svg className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} />
+        </svg>
+      </div>
+      <div>
+        <h3 className="text-lg font-semibold text-white">{title}</h3>
+        <p className="text-purple-200">{content}</p>
+        {sub && <p className="text-purple-300 text-sm">{sub}</p>}
+      </div>
+    </div>
+  );
+}
+
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  return (
+    <div className="border-b border-purple-600/40 pb-4 mb-4">
+      <h3 className="text-lg font-semibold text-purple-300">{question}</h3>
+      <p className="mt-1 text-purple-200">{answer}</p>
     </div>
   );
 }

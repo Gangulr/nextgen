@@ -5,19 +5,17 @@ import React from 'react';
 interface Project {
   title: string;
   description: string;
-  imageUrl: string
+  imageUrl: string;
   link?: string;
 }
 
-
-    const recentProjects: Project[] = [
-        {
-          title: 'Astrological Website',
-          description: 'A personal astrological website to share horoscope insights and services using React and Tailwind.',
-          imageUrl: '/images/p1.png',
-          link: 'https://dinethaastrological.com/' // ✅ link to external site
-        },
-      
+const recentProjects: Project[] = [
+  {
+    title: 'Astrological Website',
+    description: 'A personal astrological website to share horoscope insights and services using React and Tailwind.',
+    imageUrl: '/images/p1.png',
+    link: 'https://dinethaastrological.com/'
+  },
   {
     title: 'E-Commerce Store',
     description: 'An online store with payment integration and product management.',
@@ -66,14 +64,19 @@ const ongoingProjects: Project[] = [
 ];
 
 const ProjectCard: React.FC<Project> = ({ title, description, imageUrl, link }) => (
-  <div className="bg-white shadow-md rounded-2xl overflow-hidden hover:shadow-xl transition">
+  <div className="bg-gradient-to-b from-[#24194a] via-[#2d225a] to-[#0a0a23] shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition border border-blue-900">
     <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
-    <div className="p-4">
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
+    <div className="p-5">
+      <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
+      <p className="text-blue-200 mb-4">{description}</p>
       {link && (
-        <a href={link} className="text-blue-500 hover:underline mt-2 inline-block">
-          View Project
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 hover:text-blue-300 font-medium inline-block transition"
+        >
+          View Project &rarr;
         </a>
       )}
     </div>
@@ -82,23 +85,25 @@ const ProjectCard: React.FC<Project> = ({ title, description, imageUrl, link }) 
 
 const ProjectsPage = () => {
   return (
-    <div className="px-6 py-10 max-w-7xl mx-auto">
-      <h1 className="text-4xl font-bold text-center mb-10">Our Projects</h1>
+    <div className="min-h-screen bg-gradient-to-b from-[#1a1333] via-[#2d225a] to-[#0a0a23] px-6 py-12">
+      <h1 className="text-4xl font-extrabold text-center text-white mb-12 tracking-tight">
+        Our Projects
+      </h1>
 
-      <section className="mb-16">
-        <h2 className="text-2xl font-semibold mb-6 text-gray-800">Recent Projects</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {recentProjects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+      <section className="mb-20">
+        <h2 className="text-2xl font-bold mb-6 text-blue-200">Recent Projects</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {recentProjects.map((project, idx) => (
+            <ProjectCard key={idx} {...project} />
           ))}
         </div>
       </section>
 
       <section>
-        <h2 className="text-2xl font-semibold mb-6 text-gray-800">Ongoing Projects</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {ongoingProjects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+        <h2 className="text-2xl font-bold mb-6 text-blue-200">Ongoing Projects</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {ongoingProjects.map((project, idx) => (
+            <ProjectCard key={idx} {...project} />
           ))}
         </div>
       </section>

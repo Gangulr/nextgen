@@ -11,8 +11,8 @@ const services = [
       'Business Process Automation',
       'Legacy System Modernization',
       'Custom CRM & ERP Solutions',
-      'Workflow Management Systems'
-    ]
+      'Workflow Management Systems',
+    ],
   },
   {
     title: 'Web Application Development',
@@ -22,8 +22,8 @@ const services = [
       'Single Page Applications (SPA)',
       'E-commerce Solutions',
       'Content Management Systems',
-      'Real-time Web Applications'
-    ]
+      'Real-time Web Applications',
+    ],
   },
   {
     title: 'Mobile App Development',
@@ -33,8 +33,8 @@ const services = [
       'Cross-platform Development',
       'Mobile App UI/UX Design',
       'App Store Optimization',
-      'Mobile App Maintenance'
-    ]
+      'Mobile App Maintenance',
+    ],
   },
   {
     title: 'Cloud Solutions',
@@ -44,53 +44,50 @@ const services = [
       'Cloud Infrastructure Setup',
       'Serverless Architecture',
       'Cloud Security',
-      'DevOps & CI/CD'
-    ]
-  }
+      'DevOps & CI/CD',
+    ],
+  },
 ];
 
 export default function ServicesPage() {
   return (
-    <div className="bg-gradient-to-b from-white to-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl"
-          >
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-black py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-5xl font-extrabold text-white mb-4 tracking-tight drop-shadow-lg">
             Our Services
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-5 max-w-xl mx-auto text-xl text-gray-500"
-          >
-            Comprehensive software solutions to help your business thrive in the digital age
-          </motion.p>
-        </div>
+          </h1>
+          <p className="max-w-2xl mx-auto text-lg text-blue-200">
+            Comprehensive software solutions to help your business thrive in the digital age.
+          </p>
+        </motion.div>
 
-        <div className="mt-12 space-y-12">
+        <div className="grid gap-10 md:grid-cols-2">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-lg shadow-lg overflow-hidden"
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="bg-white bg-opacity-10 backdrop-blur-md rounded-xl shadow-2xl border border-blue-800 hover:border-purple-500 transition-all duration-300"
             >
-              <div className="px-6 py-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h2>
-                <p className="text-gray-600 mb-6">{service.description}</p>
-                <ul className="space-y-3">
+              <div className="px-8 py-10">
+                <h2 className="text-2xl font-semibold text-purple-300 mb-3">{service.title}</h2>
+                <p className="text-blue-100 mb-5">{service.description}</p>
+                <ul className="space-y-2">
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-start">
-                      <svg className="h-6 w-6 text-primary-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-600">{feature}</span>
+                      <span className="flex-shrink-0 mt-1 mr-3">
+                        <svg className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span className="text-white">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -100,14 +97,14 @@ export default function ServicesPage() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-12 text-center"
+          transition={{ duration: 0.7, delay: 0.7 }}
+          className="mt-16 text-center"
         >
           <a
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
+            className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-700 via-blue-700 to-black hover:from-purple-600 hover:to-blue-800 text-white text-lg font-semibold shadow-xl transition-colors duration-300"
           >
             Get Started
           </a>
@@ -115,4 +112,4 @@ export default function ServicesPage() {
       </div>
     </div>
   );
-} 
+}

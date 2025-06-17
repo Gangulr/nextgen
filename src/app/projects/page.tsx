@@ -41,12 +41,13 @@ const recentProjects: Project[] = [
 ];
 
 const ongoingProjects: Project[] = [
-  {
-    title: "Photography App",
-    description: "A photo-sharing app with likes, comments, and notifications.",
-    imageUrl: "/images/photography.jpg",
-    link: "#",
-  },
+    {
+        title: "Ceylonbliss Website",
+        description:
+          "A travel agency site built with animations, blogs, and booking features.",
+        imageUrl: "/images/p2.png",
+        link: "https://ceylon-bliss.vercel.app/",
+      },
   {
     title: "FundGenius",
     description:

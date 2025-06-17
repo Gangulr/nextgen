@@ -19,17 +19,9 @@ const navigation = [
       { name: "UI/UX Design", href: "/services/design" },
     ],
   },
-  {
-    name: "Solutions",
-    href: "/solutions",
-    submenu: [
-      { name: "For Startups", href: "/solutions/startups" },
-      { name: "For Enterprises", href: "/solutions/enterprises" },
-      { name: "Case Studies", href: "/solutions/case-studies" },
-    ],
-  },
+
   { name: "About", href: "/about" },
-  { name: "Blog", href: "/blog" },
+  { name: "Projects", href: "/projects" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -172,33 +164,14 @@ export default function Header() {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-purple-400 bg-gray-800 hover:bg-gray-700 transition-all duration-200 shadow-sm"
-              >
-                Contact Us
-              </Link>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/get-started"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-purple-600 to-indigo-500 hover:from-purple-700 hover:to-indigo-600 transition-all duration-200 shadow-md"
-              >
-                Get Started
-                <svg
-                  className="ml-2 -mr-1 w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Link>
-            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            ></motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            ></motion.div>
           </div>
 
           {/* Mobile menu button */}

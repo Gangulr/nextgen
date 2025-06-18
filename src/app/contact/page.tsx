@@ -3,10 +3,9 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from 'emailjs-com';
-emailjs.init("FoJFu_9EBXzK_7q7F");
 
 export default function ContactPage() {
-  const form = useRef(null);
+  const form = useRef<HTMLFormElement | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,14 +20,21 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log('Form submitted:', formData);
-      setFormData({ name: '', email: '', company: '', message: '' });
+      if (form.current) {
+        await emailjs.sendForm(
+          'service_cwzrxbd', // 👈 Replace this
+          'template_kegpw13', // 👈 Replace this
+          form.current,
+          'FoJFu_9EBXzK_7q7F' // 👈 Your public key
+        );
 
-      document.getElementById('success-message')?.classList.remove('hidden');
-      setTimeout(() => {
-        document.getElementById('success-message')?.classList.add('hidden');
-      }, 3000);
+        setFormData({ name: '', email: '', company: '', message: '' });
+
+        document.getElementById('success-message')?.classList.remove('hidden');
+        setTimeout(() => {
+          document.getElementById('success-message')?.classList.add('hidden');
+        }, 3000);
+      }
     } catch (error) {
       console.error('Submission error:', error);
     } finally {
@@ -89,7 +95,7 @@ export default function ContactPage() {
             className="bg-black/30 rounded-2xl shadow-xl border border-purple-700 p-8 backdrop-blur-lg"
           >
             <h2 className="text-2xl font-bold text-white mb-6">Send us a message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={form} onSubmit={handleSubmit} className="space-y-6">
               {(['name', 'email', 'company', 'message'] as Array<keyof typeof formData>).map((field) => (
                 <div key={field}>
                   <label htmlFor={field} className="block text-sm font-medium text-purple-200 mb-1">
@@ -173,13 +179,13 @@ export default function ContactPage() {
                 />
                 <InfoBlock
                   title="Phone"
-                  content="+1 (555) 123-4567"
+                  content="0759627589"
                   sub="Mon-Fri, 9am-5pm EST"
                   icon="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                 />
                 <InfoBlock
                   title="Office"
-                  content="123 Tech Street, San Francisco, CA 94107"
+                  content="Srilanka, Galle"
                   icon="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                 />
               </div>

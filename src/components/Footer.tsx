@@ -8,14 +8,13 @@ const navigation = {
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Careers', href: '/careers' },
+    { name: 'Projects', href: '/projects' },
     { name: 'Contact', href: '/contact' },
   ],
   social: [
     {
       name: 'Facebook',
-      href: '#',
+      href: 'https://www.facebook.com/profile.php?id=100069064552422&rdid=eFEGT2xkYKpr6Yrq',
       icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -194,7 +193,7 @@ const Footer = () => {
           className="mt-8 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-base text-gray-400 text-center md:text-left">
-            &copy; {new Date().getFullYear()} NextGen Solutions. All rights reserved.
+            &copy; {new Date().getFullYear()} NextGen CodeX. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0 flex space-x-6">
             <Link href="/privacy" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">

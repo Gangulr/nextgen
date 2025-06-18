@@ -691,6 +691,7 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
       </div>
+      
 
       {/* Add these styles to your globals.css */}
       <style jsx global>{`

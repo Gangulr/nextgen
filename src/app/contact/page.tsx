@@ -3,10 +3,9 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from 'emailjs-com';
-emailjs.init("FoJFu_9EBXzK_7q7F");
 
 export default function ContactPage() {
-  const form = useRef(null);
+  const form = useRef<HTMLFormElement | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,14 +20,21 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log('Form submitted:', formData);
-      setFormData({ name: '', email: '', company: '', message: '' });
+      if (form.current) {
+        await emailjs.sendForm(
+          'service_cwzrxbd', // 👈 Replace this
+          'template_kegpw13', // 👈 Replace this
+          form.current,
+          'FoJFu_9EBXzK_7q7F' // 👈 Your public key
+        );
 
-      document.getElementById('success-message')?.classList.remove('hidden');
-      setTimeout(() => {
-        document.getElementById('success-message')?.classList.add('hidden');
-      }, 3000);
+        setFormData({ name: '', email: '', company: '', message: '' });
+
+        document.getElementById('success-message')?.classList.remove('hidden');
+        setTimeout(() => {
+          document.getElementById('success-message')?.classList.add('hidden');
+        }, 3000);
+      }
     } catch (error) {
       console.error('Submission error:', error);
     } finally {
@@ -89,7 +95,7 @@ export default function ContactPage() {
             className="bg-black/30 rounded-2xl shadow-xl border border-purple-700 p-8 backdrop-blur-lg"
           >
             <h2 className="text-2xl font-bold text-white mb-6">Send us a message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={form} onSubmit={handleSubmit} className="space-y-6">
               {(['name', 'email', 'company', 'message'] as Array<keyof typeof formData>).map((field) => (
                 <div key={field}>
                   <label htmlFor={field} className="block text-sm font-medium text-purple-200 mb-1">

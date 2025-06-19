@@ -196,14 +196,14 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} NextGen CodeX. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0 flex space-x-6">
-            <Link href="/privacy" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
+            <Link href="/privacy-policy" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
+            <Link href="/terms-of-service" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
               Terms of Service
             </Link>
             <Link href="/cookies" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
-              Cookie Policy
+              Cookies Policy
             </Link>
           </div>
         </motion.div>

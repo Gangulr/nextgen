@@ -15,8 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NextGen Solutions - Digital Innovation",
+  title: "NextGen CodeX - Digital Innovation",
   description: "We transform ideas into digital reality through innovative software solutions.",
+  icons: {
+    icon: "/favicon.png", // ✅ Favicon path
+  },
 };
 
 export default function RootLayout({

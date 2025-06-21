@@ -1,98 +1,79 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
 interface Project {
   title: string;
   description: string;
-  imageUrl: string;
+  imageUrl: string
   link?: string;
 }
 
-const recentProjects: Project[] = [
+
+    const recentProjects: Project[] = [
+        {
+          title: 'Astrological Website',
+          description: 'A personal astrological website to share horoscope insights and services using React and Tailwind.',
+          imageUrl: '/images/p1.png',
+          link: 'https://dinethaastrological.com/' // ✅ link to external site
+        },
+      
   {
-    title: "Astrological Website",
-    description:
-      "A personal astrological website to share horoscope insights and services using React and Tailwind.",
-    imageUrl: "/images/p1.png",
-    link: "https://dinethaastrological.com/",
+    title: 'E-Commerce Store',
+    description: 'An online store with payment integration and product management.',
+    imageUrl: '/images/ecommerce.jpg',
+    link: '#'
   },
   {
-    title: "E-Commerce Store",
-    description:
-      "An online store with payment integration and product management.",
-    imageUrl: "/images/ecommerce.jpg",
-    link: "#",
+    title: 'Tourism Website',
+    description: 'A travel agency site built with animations, blogs, and booking features.',
+    imageUrl: '/images/tourism.jpg',
+    link: '#'
   },
   {
-    title: "Tourism Website",
-    description:
-      "A travel agency site built with animations, blogs, and booking features.",
-    imageUrl: "/images/tourism.jpg",
-    link: "#",
-  },
-  {
-    title: "Restaurant Menu App",
-    description:
-      "Digital restaurant menu system with admin dashboard and QR code menus.",
-    imageUrl: "/images/restaurant.jpg",
-    link: "#",
-  },
+    title: 'Restaurant Menu App',
+    description: 'Digital restaurant menu system with admin dashboard and QR code menus.',
+    imageUrl: '/images/restaurant.jpg',
+    link: '#'
+  }
 ];
 
 const ongoingProjects: Project[] = [
-    {
-        title: "Ceylonbliss Website",
-        description:
-          "A travel agency site built with animations, blogs, and booking features.",
-        imageUrl: "/images/p2.png",
-        link: "https://ceylon-bliss.vercel.app/",
-      },
   {
-    title: "FundGenius",
-    description:
-      "A finance management system with income and expense tracking.",
-    imageUrl: "/images/fundgenius.jpg",
-    link: "#",
+    title: 'Photography App',
+    description: 'A photo-sharing app with likes, comments, and notifications.',
+    imageUrl: '/images/photography.jpg',
+    link: '#'
   },
   {
-    title: "CraftMind",
-    description: "A skill-sharing platform for handmade crafts and tutorials.",
-    imageUrl: "/images/craftmind.jpg",
-    link: "#",
+    title: 'FundGenius',
+    description: 'A finance management system with income and expense tracking.',
+    imageUrl: '/images/fundgenius.jpg',
+    link: '#'
   },
   {
-    title: "WhatsApp Chatbot",
-    description:
-      "A business chatbot that responds to customer queries using AI.",
-    imageUrl: "/images/whatsappbot.jpg",
-    link: "#",
+    title: 'CraftMind',
+    description: 'A skill-sharing platform for handmade crafts and tutorials.',
+    imageUrl: '/images/craftmind.jpg',
+    link: '#'
   },
+  {
+    title: 'WhatsApp Chatbot',
+    description: 'A business chatbot that responds to customer queries using AI.',
+    imageUrl: '/images/whatsappbot.jpg',
+    link: '#'
+  }
 ];
 
-const ProjectCard: React.FC<Project> = ({
-  title,
-  description,
-  imageUrl,
-  link,
-}) => (
-  <div className="bg-gradient-to-br from-[#1f1c2c] to-[#928dab] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-    <img
-      src={imageUrl}
-      alt={title}
-      className="w-full h-48 object-cover opacity-90 hover:opacity-100 transition"
-    />
-    <div className="p-4 text-white">
+const ProjectCard: React.FC<Project> = ({ title, description, imageUrl, link }) => (
+  <div className="bg-white shadow-md rounded-2xl overflow-hidden hover:shadow-xl transition">
+    <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
+    <div className="p-4">
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-200 text-sm">{description}</p>
+      <p className="text-gray-600">{description}</p>
       {link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-indigo-300 hover:text-indigo-400 hover:underline mt-3 inline-block"
-        >
-          View Project →
+        <a href={link} className="text-blue-500 hover:underline mt-2 inline-block">
+          View Project
         </a>
       )}
     </div>
@@ -101,15 +82,11 @@ const ProjectCard: React.FC<Project> = ({
 
 const ProjectsPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] px-6 py-10 pt-20 sm:pt-24 text-white">
-      <h1 className="text-5xl font-bold text-center mb-14 text-indigo-200 drop-shadow-lg">
-      <span className="text-purple-400">Our Projects</span>
-      </h1>
+    <div className="px-6 py-10 max-w-7xl mx-auto">
+      <h1 className="text-4xl font-bold text-center mb-10">Our Projects</h1>
 
-      <section className="mb-20">
-        <h2 className="text-3xl font-semibold mb-6 text-white">
-          Recent Projects
-        </h2>
+      <section className="mb-16">
+        <h2 className="text-2xl font-semibold mb-6 text-gray-800">Recent Projects</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {recentProjects.map((project, index) => (
             <ProjectCard key={index} {...project} />
@@ -118,9 +95,7 @@ const ProjectsPage = () => {
       </section>
 
       <section>
-        <h2 className="text-3xl font-semibold mb-6 text-white">
-          Ongoing Projects
-        </h2>
+        <h2 className="text-2xl font-semibold mb-6 text-gray-800">Ongoing Projects</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {ongoingProjects.map((project, index) => (
             <ProjectCard key={index} {...project} />
